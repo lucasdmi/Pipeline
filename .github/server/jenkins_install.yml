@@ -1,0 +1,36 @@
+---
+- name: Instala Jenkins
+  hosts: jenkins_server
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Atualiza o cache do apt
+      apt:
+        update_cache: yes
+
+    - name: Instala o Java (OpenJDK 11)
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name: Adiciona a chave do Jenkins
+      apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+        state: present
+
+    - name: Adiciona o repositório do Jenkins
+      apt_repository:
+        repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
+        state: present
+
+    - name: Instala o Jenkins
+      apt:
+        name: jenkins
+        state: present
+        update_cache: yes
+
+    - name: Inicia o serviço Jenkins
+      service:
+        name: jenkins
+        state: started
+        enabled: yes
