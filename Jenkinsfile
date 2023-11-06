@@ -1,5 +1,11 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:lts-bullsye-slim'
+      args '-p 3000:3000'
+    }
+
+  }
   stages {
     stage('Checkout') {
       steps {
@@ -17,7 +23,7 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('error') {
           steps {
             sh '''node -v
 npm -v'''
