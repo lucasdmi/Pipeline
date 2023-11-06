@@ -21,6 +21,7 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
+            sh 'cd ~/pipelines/pipelines-frontend/'
             sh 'npm install'
             sh 'npm run build'
           }
@@ -41,8 +42,13 @@ pipeline {
       steps {
         sh 'npm test'
         echo 'Testes unitários concluídos com sucesso.'
-      }
+        
+        sh 'chmod +x ./jenkins/scripts/test.sh'            
+        sh './jenkins/scripts/test.sh'
+        }      
     }
+      
+    
 
   //  stage('Empacotamento') {
   //    steps {
