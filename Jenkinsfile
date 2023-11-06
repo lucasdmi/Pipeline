@@ -61,6 +61,9 @@ npm -v'''
     }
 
   }
+  environment {
+    CI = 'Tue'
+  }
   post {
     success {
       echo 'Pipeline concluído com sucesso!'
