@@ -18,7 +18,6 @@ pipeline {
     }
 
     stage('Build') {
-      parallel {
         stage('Build') {
           steps {
             dir('pipelines-frontend') {
@@ -28,45 +27,31 @@ pipeline {
             
           }
         }
-
-        stage('error') {
-          steps {
-            sh 'node -v'
-            sh 'npm -v'
-          }
-        }
-        
-
-      }
+      
+      
     }
 
     stage('Testes Unitários') {
       steps {
-        dir('pipelines-frontend'){
+            dir('pipelines-frontend'){
 
-            sh 'npm test'
-            echo 'Testes unitários concluídos com sucesso.'
-        }
-        
-        sh 'chmod +x ./jenkins/scripts/test.sh'            
-        sh './jenkins/scripts/test.sh'
+                sh 'npm test'
+                echo 'Testes unitários concluídos com sucesso.'
+            }
         }      
     }
       
-    
-
-  //  stage('Empacotamento') {
-  //    steps {
-  //      sh 'tar -cvf pipelines-frontend.tar ./'
-  //      echo 'Empacotamento concluído com sucesso.'
-  //    }
-  //   }
+   stage('Empacotamento') {
+      steps {
+        sh 'tar -cvf pipelines-frontend.tar ./'
+        echo 'Empacotamento concluído com sucesso.'
+      }
+     }
 
     stage('Deploy') {
       steps {
         //sh 'scp pipelines-frontend.tar lucas@web-prod:/caminho/do/servidor/'
-       // sh 'ssh lucas@web-prod "cd /caminho/do/servidor && tar -xvf pipelines-frontend.tar'
-            
+        //sh 'ssh lucas@web-prod "cd /caminho/do/servidor && tar -xvf pipelines-frontend.tar'          
         echo 'Deploy concluído com sucesso.'
       }
     }
