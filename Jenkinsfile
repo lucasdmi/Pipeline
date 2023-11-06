@@ -11,9 +11,11 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Compila o projeto (por exemplo, uma aplicação Node.js)
+                // Instala as dependências
                 sh 'npm install'
-                echo 'Build concluído com sucesso.'
+                
+                // Opcional: Executa o script de build
+                sh 'npm run build'
             }
         }
 
