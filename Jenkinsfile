@@ -42,8 +42,11 @@ pipeline {
 
     stage('Testes Unitários') {
       steps {
-        sh 'npm test'
-        echo 'Testes unitários concluídos com sucesso.'
+        dir('pipelines-frontend'){
+
+            sh 'npm test'
+            echo 'Testes unitários concluídos com sucesso.'
+        }
         
         sh 'chmod +x ./jenkins/scripts/test.sh'            
         sh './jenkins/scripts/test.sh'
