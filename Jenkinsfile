@@ -21,9 +21,12 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            sh 'cd ~/pipelines/pipelines-frontend/'
-            sh 'npm install'
-            sh 'npm run build'
+            dir('pipelines-frontend') {
+                sh 'cd ~/pipelines/pipelines-frontend/'
+                sh 'npm install'
+                sh 'npm run build'
+            }
+            
           }
         }
 
