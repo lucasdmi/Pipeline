@@ -8,6 +8,9 @@ pipeline {
   }
   stages {
     stage('Checkout') {
+      environment {
+        CI = 'True'
+      }
       steps {
         checkout scm
         echo 'Código fonte obtido com sucesso.'
