@@ -1,13 +1,21 @@
 pipeline {
-    agent any
-    stages {
-        stage('Checkout') {
-            steps {
-                // Clona o repositório do código fonte
-                checkout scm 
-                echo 'Código fonte obtido com sucesso.'
-            }
+    agent {
+        docker {
+            image 'node:lts-bullseye-slim' 
+            args '-p 3000:3000'
         }
+    }
+    environment { 
+        CI = 'true'
+    }
+    stages {
+        //stage('Checkout') {
+        //    steps {
+        //        // Clona o repositório do código fonte
+        //        checkout scm 
+        //        echo 'Código fonte obtido com sucesso.'
+        //    }
+       // }
 
         stage('Build') {
             steps {
