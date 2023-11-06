@@ -1,8 +1,8 @@
 pipeline {
   agent {
     docker {
-      image 'node:lts-bullsye-slim'
-      args '-p 3000:3000'
+      image 'node:lts-bullseye-slim' 
+            args '-p 3000:3000'
     }
 
   }
@@ -28,8 +28,8 @@ pipeline {
 
         stage('error') {
           steps {
-            sh '''node -v
-npm -v'''
+            sh 'node -v'
+            sh 'npm -v'
           }
         }
 
