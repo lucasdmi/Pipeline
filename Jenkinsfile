@@ -18,14 +18,12 @@ pipeline {
     }
 
     stage('Build') {
-        stage('Build') {
           steps {
             dir('pipelines-frontend') {
                 sh 'npm install'
                 sh 'npm run build'
             }
             
-          }
         }
 
       
@@ -34,7 +32,6 @@ pipeline {
     stage('Testes Unitários') {
       steps {
             dir('pipelines-frontend'){
-
                 sh 'npm test'
                 echo 'Testes unitários concluídos com sucesso.'
             }
