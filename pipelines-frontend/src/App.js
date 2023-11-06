@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -6,8 +7,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Bem-vindo à minha aplicação!</h1>
-        <p>Este é um exemplo simples de frontend.</p>
+        <h1>Bem-vindo ao Melhor Frontend!</h1>
+        <p>Este é o melhor frontend já criado para este trabalho.</p>
       </header>
     </div>
   );
