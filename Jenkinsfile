@@ -22,7 +22,6 @@ pipeline {
         stage('Build') {
           steps {
             dir('pipelines-frontend') {
-                sh 'cd ~/pipelines/pipelines-frontend/'
                 sh 'npm install'
                 sh 'npm run build'
             }
