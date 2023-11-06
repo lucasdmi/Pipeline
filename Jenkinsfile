@@ -21,7 +21,7 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            sh 'cd pipelines-frontend && npm -i'
+            sh 'npm install'
             sh 'npm run build'
           }
         }
@@ -32,6 +32,7 @@ pipeline {
             sh 'npm -v'
           }
         }
+        
 
       }
     }
@@ -43,27 +44,24 @@ pipeline {
       }
     }
 
-    stage('Empacotamento') {
-      steps {
-        sh 'tar -cvf pipelines-frontend.tar ./'
-        echo 'Empacotamento concluído com sucesso.'
-      }
-    }
+  //  stage('Empacotamento') {
+  //    steps {
+  //      sh 'tar -cvf pipelines-frontend.tar ./'
+  //      echo 'Empacotamento concluído com sucesso.'
+  //    }
+  //   }
 
     stage('Deploy') {
       steps {
-        sh 'scp pipelines-frontend.tar lucas@web-prod:/caminho/do/servidor/'
-        sh '''
-                ssh lucas@web-prod "cd /caminho/do/servidor && tar -xvf pipelines-frontend.tar"
-                '''
+        //sh 'scp pipelines-frontend.tar lucas@web-prod:/caminho/do/servidor/'
+       // sh 'ssh lucas@web-prod "cd /caminho/do/servidor && tar -xvf pipelines-frontend.tar'
+            
         echo 'Deploy concluído com sucesso.'
       }
     }
 
   }
-  environment {
-    CI = 'Tue'
-  }
+
   post {
     success {
       echo 'Pipeline concluído com sucesso!'
