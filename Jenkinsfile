@@ -9,9 +9,21 @@ pipeline {
     }
 
     stage('Build') {
-      steps {
-        sh 'cd pipelines-frontend && npm -i'
-        sh 'npm run build'
+      parallel {
+        stage('Build') {
+          steps {
+            sh 'cd pipelines-frontend && npm -i'
+            sh 'npm run build'
+          }
+        }
+
+        stage('') {
+          steps {
+            sh '''node -v
+npm -v'''
+          }
+        }
+
       }
     }
 
