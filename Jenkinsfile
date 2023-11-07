@@ -44,9 +44,11 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        //sh 'scp pipelines-frontend.tar lucas@web-prod:/caminho/do/servidor/'
-        //sh 'ssh lucas@web-prod "cd /caminho/do/servidor && tar -xvf pipelines-frontend.tar'          
+        sh 'scp pipelines-frontend.tar lucas@web-prod:/Documents/pipelines/'
+        sh 'ssh lucas@web-prod "cd ~/Documents/pipelines/ && tar -xvf pipelines-frontend.tar'          
         echo 'Deploy concluído com sucesso.'
+        //EXemplo simples de Deploy adicionando os arquivos do frontend no servidor - 
+        //Para o deploy funcionar precisa comentar o sh
       }
     }
 
