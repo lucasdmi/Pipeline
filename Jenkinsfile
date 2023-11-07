@@ -4,7 +4,6 @@ pipeline {
       image 'node:lts-bullseye-slim' 
             args '-p 3000:3000'
     }
-
   }
   stages {
     stage('Checkout') {
@@ -28,7 +27,6 @@ pipeline {
 
       
     }
-
     stage('Testes Unitários') {
       steps {
             dir('pipelines-frontend'){
@@ -36,8 +34,7 @@ pipeline {
                 echo 'Testes unitários concluídos com sucesso.'
             }
         }      
-    }
-      
+    }     
    stage('Empacotamento') {
       steps {
         sh 'tar -cvf pipelines-frontend.tar ./'
